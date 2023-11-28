@@ -1,0 +1,46 @@
+url to visit("https://github.com/")
+and username(Keerthana-gopalswamy) and password(Keerthana@2301)
+
+first download github in laptop using
+https://git-scm.com/downloads
+https://statics.teams.cdn.office.net/evergreen-assets/safelinks/1/atp-safelinks.html
+first save the folder in the temporary folder
+and create empty folder in the github
+GITHUB CODE PUSHING:
+* git clone //repositryurl//
+*copy the folder and save in the temporary repositry folder
+* move the terminal to repositorey => cd (tab button)
+* make the changes or create a folder
+* git add  . (adds all the changed file)
+* git commit   -m "Any commit message"
+* git push
+
+ 
+x------------------------------------------------------------------------------------------------------x------------------------------------------------------------------------------------------------------x------------------------------------------------------------------------------------------------------x
+
+ 
+
+GITHUB CODE PULLING:
+ * git clone //repoistryurl//
+* move the terminal to repositorey => cd (tab button)
+* git pull
+
+x------------------------------------------------------------------------------------------------------x------------------------------------------------------------------------------------------------------x------------------------------------------------------------------------------------------------------x
+
+
+after the updation 
+
+* make the changes or create a folder
+* git add . (adds all the changed file)
+* git commit -m "Any commit message"
+* git push
+
+
+
+
+
+
+
+
+
+
