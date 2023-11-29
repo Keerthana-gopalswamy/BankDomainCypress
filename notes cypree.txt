@@ -1,0 +1,310 @@
+when creating the json file for datas use seperate name to call the data in 
+different scenario
+to study about cypress:(https://docs.cypress.io/)
+---XPATH IN CYPRESS---
+Step 1: Install Cypress XPath Plugin. Using NPM. $ npm install cypress-xpath. ...
+Step 2: Add plugin to support / index. js. Now go to the support folder and index. ...
+Step 3: XPath Usage. Now that is done, let us see how we can use this in real-time action.
+-----END----
+
+Using mocha framework
+
+first open the comment prompt 
+documents>cypress>npx cypress open
+click on project the code will be displayed the program code in visual studio
+
+
+cypress tool :in this tool we select only 'e2e' or 'component testing'  and also selecting the browser
+like google,edge..
+
+to open new project for cypress in visual studio
+use projectname.cy.js
+  
+1method:
+to run a test in visual studio view>terminal>npx cypress open
+to get the terminal view>terminal
+
+2method:
+command prompt
+
+
+how to run test in vs for cypress?
+open view>terminal>npx cypress open
+cypress opened select e2e testing select browser 
+wait for output
+
+
+
+e2e testing :similar to the system testing ,testing the functionalities from start to end
+component tetsing:the another name of unit testing is componen testing
+testing the individula component
+
+to write code in vs first create a file in cypress
+select browser
+click on new specs
+enter the path name(projectnamen.cy.js)
+after completing the test close the browser in cypress tool
+user want to print the statement it should displayed in command prompt
+
+
+example progeram:
+describe('template spec', () => {
+  it('passes', () => {
+    cy.visit('https://example.cypress.io')
+  })
+})
+this code already pasted in visual studio 
+give 'cypress start' in visualcode
+file>preference>configure user snippets
+-----cypress installation------
+install node.js
+create a project cypress
+opern terminal (cd cypress)
+(first time install---->(paste(npm init -y)))<---->important
+
+paste(npm install cypress --save-dev)
+cucumber intall ( npm install  cypress-cucumber-preprocessor  )
+paste(npx cypress open)-after this see cucumber project in cypress
+now it opened the cypress
+create the first cypree project
+cucumber project in cypress
+create integration folder by own instead of e2e
+unter integration create feature file and js file
+and under support file create pom 
+AND
+After completed the process to install cypress and cucumber
+correct the cypress.config.js file and package.json
+
+
+important notes:
+use import statement in js file (import element from "../../support/pom/filename";)
+export statement in pom file (export default file name;)
+
+ 
+
+
+---------end-------
+
+css selector:
+css selector used in cypress to find the elements
+css selector in w3 school
+get()-->used in the cypress to find the element
+
+
+18/5/23----cypress notes--------- 
+
+to run a test run :terminal>new terminal
+
+22/5----cypress-----
+plugin?....
+npm init   enterclick
+inside the to select the option we use (>)options
+
+Assertion:
+the parent element should be first(get()method)
+should()---it is a method we use it for assertion
+in the method we use our aseertions and instead of using multiple should() we use and()method
+--Implict assertion--
+include
+eq
+contain
+be.visible
+exists
+have.length-used to check number of links
+have.value-check the text we type in element
+--explict assertion--
+here we can use the javascript function to store the value
+expect()
+assert()
+.
+we use normal assertion
+----cy.origin----
+cy.origin means cross brossing like one url contain many url
+once user wants to click on the element having url they should use cy.origin()
+ex:
+cy.origin('url',=>{
+"element clicked"   })
+click({force: true})--- this method for the element to be clicked if the element is inside another element
+cy.go()--used for back and forward to the webpage
+
+---hook cocept---
+before()--used to test the block
+beforeeach()--used before the test case
+aftereach()---used after the test case
+after()----after the test block completed
+hook concept is also like testng similar difference
+--print the text using text methodtext()---
+cy.get('css selector').each((variable name with $ sign) => {
+  console.log(variable name with $ sign.text());
+
+---fileupload---
+npm install --save-dev cypress-file-upload (install this and import statement paste)
+import 'cypress-file-upload';
+attachfile()--normalmethod
+
+  ----drag and drop
+ren
+------cucumber framework in cypress installation----0706
+npm install --save-dev cypress-cucumber-preprocessor to install cucumber
+cypress.con.js:(
+const cucumber = require("cypress-cucumber-preprocessor").default;
+
+module.exports = {
+  ...(on, config) => {
+    on("file:preprocessor", cucumber());
+
+    config.integrationFolder = "cypress/e2e/project/cy.js";
+    config.testFiles = "**/*.feature";
+
+    return config;
+  },
+
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+
+    },
+  },
+};
+)
+cucumber:here the name of folder and feature file should be same(.feature)should have it
+split()---split method is used to split the word in cypress
+after using split method we should directly the value in split dont give double qotes and avoid special character user inside the split method/[@#]/
+invoke('text')--it is used command retrieves the visible text content of the element
+if user want to retrive the hidden text use this -.invoke('val') -instead. 
+then()-method is used to save the text in the variable
+each()-is used to get the element one by one
+within()--is used to get the child element from parent element
+---handling iframe in cypress---
+approach 1:save the frame selector in the variable
+like let if=selector.its('0.contentDocument.body').assertion.then(cy.wrap)
+then use the variable to actions
+(.its('length')
+  .then((count) => {
+    cy.log('Element count:', count);)to .its('length')
+  .then((count) => {
+    cy.log('Element count:', count);
+  });to .its('length')
+  .then((count) => {
+    cy.log('Element count:', count);
+  });to print the count
+  
+----3006--
+children() in cypress is used to get the elemnets in child element
+(cy.wrap() is used to wrap the method--it is not easy to use to get the value)
+within--within(())=>{}-->within method:get the parent selector
+ after use the within() method after that use child selector.
+(iframe--> (cy.get('#frame2').its('0.contentDocument.body').find('[id="sampleHeading"]').invoke('text')
+    .then((text)=>{
+        iframetext2=text;
+        cy.log(iframetext2)
+
+    })    )--- take it as example for iframe method
+custom commands in iframes---to stop the repeated commands  
+support>com.js
+already in their----add that command using add method
+cypress.commands.add('getiframe',(iframe)=>{
+return cy.get(iframe)
+.its('0.contentDocument.body').should('be.visible').then(cy.wrap);
+})
+getiframe is custom command in iframe second approach2
+
+approach3---using plugin in iframe
+first getting the frame
+then interact with the frame
+install--->npm install -D cypress-iframe
+example:import 'cypress-iframe'-first import it
+cy.frameLoaded('#frame1');---loading the frame
+cy.iframe('#frame1').find('[id="sampleHeading"]').should('be.visible');
+assertion in the frame)
+-----cucumber framework html report----
+Part 20: Cypress E2E Web Automation | How To Generate HTML Reports|Headed & Headless mode execution----->watch the video
+https://www.npmjs.com/package/cypress-mochawesome-reporter-->gwt the command
+(and open the broser-->(node_modules\.bin\cypress run --spec cypress\integration\examples\CucumberBDD\E2E.feature​​ --headed​​ --no-exit​​ --browser chrome)
+open the specific browser and specific file)
+----end----------
+---Select() method in cypress--
+   single selection
+using select() method ,select by value,select by text,select by index
+like normal selectmethod inside that user can select ,the value,text
+   multiselect
+using select()method ,inside use this ['text','text']
+using each()method to print one bye one and wrap()method
+use some assertion
+---wait condition in cypress---
+cy.wait()---only used as wait condition
+{timeout:1000}--->old wait condition mainly used for assertion
+dynamic wait(using intercept graphql request) 
+1)using GET
+in the developer tool -->networks
+get the last url in name section
+ cy.intercept('GET','GETvalue').as('name');
+    cy.wait('@name')
+only get the value we give-->GETvalue
+2)using POST
+get the commoon url in the name section
+  cy.intercept('POST','POSTvalue').as('name');
+    cy.wait('@name')
+get all the value similar-->POSTvalue
+
+each()-->it is also like a for loop in cypress using wrap()method
+
+---2507---
+automate audio in cypress
+click the audio button
+ cy.get("css selector")
+    .should('have.prop','paused',false)    //verify the audio is playing-->Assertion
+    .then((video) => {
+      video[0].play(); 
+      cy.wrap(video[0]).should('have.prop', 'ended', false); // Verify that the audio is not ended-->Assertion
+automate video in cypress--->same as audio
+-------->whenever created a project follow this rules--------->
+notes---->code optimization
+function name:-->starts with small letter upcoming words capital letter(camel case)
+1)name should be described,unique
+variable name:--->starts with small letter upcoming words capital letter
+functionname,variablename-----<---camel  case
+class name,project name,file name,folfer name--->starts with capital letter<--
+-pascal case
+only repaeted locators saved only pom file
+learn about as as(),then()
+as() is importantly use to save the alias in api request
+then() in mainly used to save the locatiors elements
+
+
+
+pascal case-->each words first letter should be uppercase
+eg: AutomationTestPractice
+
+camel  case--->first word first letter should be lower case remaining words first letter should be uppercase
+eg:automationTestPractice
+------------->-----------><------------------------------->
+---2807---
+    wait in cypress
+used timeout for many purpose-->if the page is updated before the click give some timeout and assertion
+also used in assertion
+chaining assertion in cypress-->
+------------------------2509--------------
+---important notes------
+cypress is a Tool for API Testing
+better then selenium
+using framework in vs code editor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
